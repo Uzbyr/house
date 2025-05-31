@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Pareto House</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(47px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #828282;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .apply-btn {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .apply-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* FAQ Page Content */
+        .faq-page {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .faq-question {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            color: #ffffff;
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-left: 0;
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.collapsed .faq-answer {
+            display: none;
+        }
+
+        .faq-item.collapsed .faq-toggle {
+            transform: rotate(0deg);
+        }
+
+        .faq-item:not(.collapsed) .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1200px) {
+            .nav-container {
+                max-width: 1200px;
+                padding: 1rem 2rem;
+            }
+
+            .faq-page {
+                max-width: 1000px;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            footer {
+                max-width: 1200px;
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-container {
+                padding: 1rem 2rem;
+            }
+
+            .faq-page {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .faq-question {
+                font-size: 1.2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            footer {
+                padding: 3rem 2rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Link styling */
+        a {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Pareto House</a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">ABOUT</a></li>
+                <li><a href="index.html#mentors">MENTORS</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+            </ul>
+            <a href="index.html#apply" class="apply-btn">APPLY NOW</a>
+        </div>
+    </nav>
+
+    <!-- FAQ Content -->
+    <main class="faq-page">
+        <h1 class="page-title">Frequently Asked<br>Questions</h1>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                What is Pareto House?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                Pareto House is an elite community for the top 0.1% of STEM undergraduates worldwide. We provide unparalleled opportunities, mentorship, and resources to accelerate your path to the top of the tech ecosystem.
+            </div>
+        </div>
+
+        <div class="faq-item collapsed">
+            <div class="faq-question">
+                Who can apply to Pareto House?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                We accept exceptional undergraduate students in STEM fields from top universities worldwide. Applicants should demonstrate outstanding academic performance, leadership potential, and a passion for innovation and entrepreneurship.
+            </div>
+        </div>
+
+        <div class="faq-item collapsed">
+            <div class="faq-question">
+                What benefits do members receive?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                Members gain access to world-class mentors, an elite peer network, startup resources worth over $100,000, internship opportunities at competitive Silicon Valley startups, and connections that can transform their career trajectory.
+            </div>
+        </div>
+
+        <div class="faq-item collapsed">
+            <div class="faq-question">
+                How many members are accepted per batch?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                We accept only 25 highly selective members per batch to ensure personalized attention and maintain the exclusivity of our community.
+            </div>
+        </div>
+
+        <div class="faq-item collapsed">
+            <div class="faq-question">
+                What is the application process?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                The application process includes submitting your academic records, a personal statement, project portfolio, and participating in multiple interview rounds with our selection committee and current mentors.
+            </div>
+        </div>
+
+        <div class="faq-item collapsed">
+            <div class="faq-question">
+                Is there a cost to join Pareto House?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                We believe in merit-based selection. Detailed information about any costs will be provided during the application process to accepted candidates.
+            </div>
+        </div>
+
+        <div class="faq-item collapsed">
+            <div class="faq-question">
+                How long is the program?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                The program duration varies based on your academic timeline and goals. Most members remain active throughout their undergraduate studies and often continue as alumni mentors.
+            </div>
+        </div>
+
+        <div class="faq-item collapsed">
+            <div class="faq-question">
+                Can international students apply?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                Yes! We welcome exceptional students from universities worldwide. Our community spans over 30 top universities globally.
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Pareto House</div>
+            <div class="footer-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.add('collapsed');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('collapsed');
+                });
+            });
+        });
+
+        // Mobile menu toggle (for future enhancement)
+        const navToggle = document.createElement('button');
+        navToggle.innerHTML = '☰';
+        navToggle.style.display = 'none';
+        navToggle.style.background = 'none';
+        navToggle.style.border = 'none';
+        navToggle.style.color = 'white';
+        navToggle.style.fontSize = '1.5rem';
+        navToggle.style.cursor = 'pointer';
+        
+        // Add to nav container for mobile
+        if (window.innerWidth <= 768) {
+            const navContainer = document.querySelector('.nav-container');
+            navContainer.appendChild(navToggle);
+            navToggle.style.display = 'block';
+        }
+    </script>
+</body>
+</html> 
